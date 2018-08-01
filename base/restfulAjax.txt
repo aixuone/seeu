@@ -1,0 +1,42 @@
+AJAX   添加设置项 content-type :  json
+接口:
+/SYSTEM  
+	获取系统列表
+	GET
+	参数：无
+
+/INFOS
+	获取所选系统对应的数据表
+	GET
+	json参数: 
+		SystemID:    //所选系统的id
+
+/FIELDS
+	获取所选系统 所选表 的 所有字段
+	GET
+	url参数:
+		/DBS/XINFO   //DBS 系统id //XINFO 数据表id
+
+/DATA 
+	获取所选系统 所选表 所选字段 对应的数据
+	POST
+	json参数：
+		SYSTEM : 系统id ,
+		INFO :	 数据表id ,
+		BUNDLE : [
+			{
+				field : '维度名称' ,
+				polymerize : ' 聚合方式 ' //分组 GROUP 求和 SUM 平均数 AVG 计数 COUNT 
+			}
+		], 
+		ORDER : [
+			{
+				field : '维度名称' ,
+				type : ' 排列方式 ' //  desc ...
+			}			
+		]
+/CHART
+    保存
+    BUNDLE,STYLE,TITLE,INFO
+
+	

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图表展示页</title>
+	<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+	<link href="css/layoutit.css" rel="stylesheet">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="bootstrap-select/bootstrap-select.min.css">
+	<link rel="stylesheet" href="css/ixu.css">	
+	<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+</head>
+<body>
+	<div id="echart" style="background: #ff0">
+		
+
+	</div>
+	<script>
+	function getParam(paramName) {
+		    paramValue = "", isFound = !1;
+		    if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
+		        arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&"), i = 0;
+		        while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
+		    }
+		    return paramValue == "" && (paramValue = null), paramValue
+		}
+		var urlid = getParam('dbid');
+		var w = getParam('w');
+		var h = getParam('h');
+		$("#echart").width(w+'px').height(h+'px');
+			
+		var database = JSON.parse(sessionStorage.database);
+		var io ,type, style,bundle,title;
+		for(var i = 0;i<database.length;++i){
+			if(urlid==database[i].ID){
+				
+				io = database[i];
+				title = io.TITLE;
+				bundle = database[i].BUNDLE;
+				style= database[i].STYLE;
+				type = database[i].BUNDLE[0].type;
+			}
+		}
+		//ajax 请求 获取字段对应的值 生成图表
+		//服务器地址
+		var basePath = "http://192.168.60.185:8080/";
+		//ajax 请求 获取字段对应的值 生成图表
+	$.ajax({
+		contentType: 'application/json',
+		url: basePath + "CHART/DATA",
+		type: 'POST',
+		dataType: 'json',
+		data: JSON.stringify(io),
+		success: function(chartCont) {
+			console.log("success");
+			var x1 = [],
+				y1 = [];
+			if (bundle[0].polymerize == 'GROUP') var x = bundle[0].field;
+			else var x = bundle[0].polymerize + '_' + bundle[0].field;				
+			// var x = bundle[0].field;
+			if (bundle[1].polymerize == 'GROUP')
+				var y = bundle[1].field;
+			else var y = bundle[1].polymerize + '_' + bundle[1].field;
+			for (var i in chartCont) {
+				x1.push(chartCont[i][x]);
+				y1.push(chartCont[i][y]);
+			}
+			switch (type) {
+
+				case 'bar':
+					;
+				case 'line':
+					 
+					var option = {
+						// $clone.find('input[data-chartitme=title]').val()
+						title: {
+							text: title,
+							x: 'center'
+						},
+						tooltip: {
+							trigger: 'axis',
+							axisPointer: {
+								type: 'shadow'
+							}
+						},
+						legend: {
+							x: 'right bottom',
+							data: [y]
+						},
+						toolbox: {
+							show: true,
+							orient: 'vertical',
+							left: 'right',
+							top: 'center',
+							feature: {
+								// dataView: {show: true, readOnly: false},
+								// magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+								restore: {
+									show: true
+								},
+								saveAsImage: {
+									show: true
+								}
+							}
+						},
+						calculable: true,
+						xAxis: {
+							type: 'category',
+							axisTick: {
+								show: true
+							},
+							data: x1
+						},
+						yAxis: {
+							type: 'category'
+						},
+						series: [{
+							name: y,
+							type: type,
+							data: y1
+						}]
+
+					};
+					break;
+				case 'pie':
+					var x1 = [],
+						y1 = [],
+						arr = [];
+					if (bundle[0].polymerize == 'GROUP') var x = bundle[0].field;
+					else var x = bundle[0].polymerize + '_' + bundle[0].field;									
+					// var x = bundle[0].field;
+					if (bundle[1].polymerize == 'GROUP')
+						var y = bundle[1].field;
+					else var y = bundle[1].polymerize + '_' + bundle[1].field;
+					for (var i in chartCont) {
+						x1.push(chartCont[i][x]);
+						y1.push(chartCont[i][y]);
+					}						
+					for (var i in chartCont) {
+						x1.push(chartCont[i][x]);
+						var o = {
+							name: '',
+							value: ''
+						};
+						o.name = chartCont[i][x];
+						o.value = chartCont[i][y];
+						arr.push(o);
+					}
+					var option = {
+							// $clone.find('input[data-chartitme=title]').val()
+							title :{
+								text:title,
+								x:'center'
+							} ,
+							tooltip: {
+						       	trigger: 'item',
+						        formatter: "{a} <br/>{b} : {c} ({d}%)",
+						        axisPointer: {
+						            type: 'shadow'
+						        }
+						    },
+					        legend: {       	
+					        	left: 'left',
+					        	x:'left',
+					        	data: x1,
+						    },
+						    toolbox: {
+						        show: true,
+						        orient: 'vertical',
+						        left: 'right',
+						        top: 'center',
+						        feature: {
+						            restore: {show: true},
+						            saveAsImage: {show: true}
+						        }
+						    },
+						    calculable: true,
+					        series: [{
+					            name: 'Forest',
+					            type: 'pie',
+					            data: arr,
+					            itemStyle: {
+					                emphasis: {
+					                    shadowBlur: 10,
+					                    shadowOffsetX: 0,
+					                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+					                }
+					            }
+					        }]
+
+						};					
+					break;
+				case 'scatter': 
+					// var x = bundle[0].field;
+					if (bundle[0].polymerize == 'GROUP') var x = bundle[0].field;
+					else var x = bundle[0].polymerize + '_' + bundle[0].field;									
+					if (bundle[1].polymerize == 'GROUP') var y = bundle[1].field;
+					else var y = bundle[1].polymerize + '_' + bundle[1].field;				
+					var arr = []; 
+					for(var i = 0;i<chartCont.length;i++){
+						var r =[ Number(chartCont[i][x]),Number(chartCont[i][y])];
+						arr.push(r);
+					}
+					var option = {
+						title: {
+							text: title,
+							x: 'center'
+						},
+						legend: {
+							left: 'left',
+							x: 'left',
+							data: x1,
+						},
+						toolbox: {
+							show: true,
+							orient: 'vertical',
+							left: 'right',
+							top: 'center',
+							feature: {
+								restore: {
+									show: true
+								},
+								saveAsImage: {
+									show: true
+								}
+							}
+						},
+						xAxis:{},
+						yAxis:{
+							type: 'time'
+						},
+						series:[{
+							symbolSize: 5,
+        					data: arr,
+        					type: "scatter"
+						}]
+					}
+			}
+			
+			$('#echart').show();
+			var mychart = echarts.init($('#echart')[0]);
+			mychart.setOption(option);
+			$( "#echart" ).resizable();
+			$( "#echart" ).append('<div id="wh"></div>')			
+			$('#echart').bind('resize',function(){
+				mychart.resize();
+				var _w =$('#echart').width();
+				var _h =$('#echart').height();
+				$("#wh").html('宽: '+_w+'px; 高 '+_h+'px')
+			})						
+
+		},
+		error: function(err) {
+			// console.error(err);
+			console.error(err.responseText);
+		}
+
+	});
+
+
+	</script> 
+	
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/echarts.js"></script>
+	<script type="text/javascript" src="js/theme.js"></script>	
+</body>
+</html>
