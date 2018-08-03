@@ -1,4 +1,5 @@
 var dom_id = 111;
+var write_id ;//正在编辑的表单 DOM的id
 function supportstorage() {
 	if (typeof window.localStorage=='object') 
 		return true;
@@ -485,6 +486,7 @@ $(".sidebar-nav .lichart").draggable({
 			lichart.find("span.drag").css({"top":"-30px",'right':'10px'});
 			lichart.find("a.remove").css({"top":"-30px",'right':'70px'});
 			showSetChartWin('add');
+			write_id = clone.attr("id");
 			var $view = lichart.find('.setChart');
 			$view.each(function(index, el) {
 				var that = $(this);

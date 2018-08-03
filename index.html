@@ -396,7 +396,7 @@
             <option value="dark">暗色</option>
           </select>  
         </div> 
-        <div class="input-group charttitle">
+        <!-- <div class="input-group charttitle">
           <span class="input-group-addon">基本条件:</span>
           <select name="" class="basework">
             <option value="all">无</option>
@@ -404,7 +404,7 @@
             <option value="komatsu">时间段</option>
             <option value="light">品牌</option>
           </select>  
-        </div>               
+        </div>    -->            
         <div class="input-group span2">
           <span class="input-group-addon">请选择 值:</span>
           <select class="chartValue">
@@ -442,24 +442,26 @@
           </select>
         </div>
         <div id='serieslist'>
-          <div class="input-group span2">
-            <span class="input-group-addon">请选择 系列:</span>
-            <select  class="chartSeries">
-              <option value="1">选项</option>
-              <option value="1">选项</option>
-              <option value="1">选项</option>
-            </select>
+          <div>
+            <div class="input-group span2">
+              <span class="input-group-addon">请选择 系列:</span>
+              <select  class="chartSeries">
+                <option value="1">选项</option>
+                <option value="1">选项</option>
+                <option value="1">选项</option>
+              </select>
+            </div>
+            <div class="input-group span2">
+              <span class="input-group-addon">聚合方式:</span>
+              <select class="chartSeriesOpt">
+                <option value="">聚合方式</option>
+                <option value="GROUP">分组</option>
+                <option value="SUM">求和</option>
+                <option value="AVG">平均数</option>
+                <option value=" COUNT">计数</option>
+              </select>
+            </div>  
           </div>
-          <div class="input-group span2">
-            <span class="input-group-addon">聚合方式:</span>
-            <select class="chartSeriesOpt">
-              <option value="">聚合方式</option>
-              <option value="GROUP">分组</option>
-              <option value="SUM">求和</option>
-              <option value="AVG">平均数</option>
-              <option value=" COUNT">计数</option>
-            </select>
-          </div>  
         </div>
         <div class="input-group" style="text-align: center;clear:both;width: 100%;">
           <button class="btn btn-info" id="seriesAdd">添加系列</button>
@@ -488,6 +490,7 @@
       </div>
   </script>  
   <script type="text/html" id="eg_series"> 
+    <div>
       <div class="input-group span2">
         <span class="input-group-addon">请选择 系列:</span>
         <select  class="chartSeries">
@@ -505,7 +508,8 @@
           <option value="AVG">平均数</option>
           <option value=" COUNT">计数</option>
         </select>
-      </div>  
+      </div> 
+    </div> 
   </script>
   <script type="text/html" id="eg_filter"> 
       <div class="input-group">
