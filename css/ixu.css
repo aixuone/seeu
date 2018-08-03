@@ -5,3 +5,41 @@
     display: inline-block;
     text-align: right;
 }
+.chartset-content {
+	padding: 0;
+	bottom: 53px;
+}
+#chartset .sethead button{
+	margin-left: 5px;
+	float: left;
+}
+
+#chartset .sethead h4{
+	height: 30px;
+    line-height: 30px;
+    padding-left: 70px;
+}
+#chartset .sethead{
+	margin-bottom: 30px;
+}
+#chartset .setbody select{
+	width: 100px;
+}
+#chartset .setbody .charttitle.input-group{
+	text-align: left;
+	width: 460px;
+	margin-left: 30px;
+}
+#chartset .setbody .input-group{
+	width: 200px;
+}
+#chartset .setbody .input-group span{
+	width: 80px;
+	display: inline-block;
+}
+#chartset .setbody.chartselect .input-group{
+	width: 100%;
+}
+#chartset .setbody.chartselect .input-group .input-group-addon{
+	width: 200px;
+}

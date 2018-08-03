@@ -42,9 +42,9 @@
   <div class="navbar-inner">
     <div class="container-fluid">
       <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="brand" href="/"><img src="img/favicon.png"> 可视化布局<span class="label">BETA</span></a>
+      <a class="brand" href="/"><img src="img/favicon.png">MRO可视化<span class="label">BETA</span></a>
       <div class="nav-collapse collapse">
-        <ul class="nav" id="menu-layoutit">
+        <ul class="nav" id="menu-layoutit" style="display: none;">
           <li class="divider-vertical"></li>
           <li>
             <div class="btn-group" data-toggle="buttons-radio">
@@ -64,7 +64,7 @@
           </li>
         </ul>
         <ul class="nav pull-right">
-          <li><a href="http://www.bootcss.com/">网站首页</a></li>
+          <!-- <li><a href="http://www.bootcss.com/">网站首页</a></li> -->
                   <li>
                   <div class="btn-group">
                   <span></span>
@@ -859,7 +859,7 @@
         </ul>  
 
         <!-- //图表列表 -->
-        <ul class="nav nav-list accordion-group hide" id="chartView">
+        <ul class="nav nav-list accordion-group" id="chartView">
           <li class="nav-header"><i class="icon-plus icon-white"></i> 图表 </li>
           <li style="display: none;" class="boxes mute" id="elmComm2">
             <div class="preview">
@@ -1133,7 +1133,7 @@
   </div>
   <!--/row--> 
   <!-- 右侧数据表格输入 -->
-  <div class="chartset-content table-responsive">
+  <div class="chartset-content table-responsive hide">
       <h4 class="clearfix"> <i class="icon-remove icon-white pull-right" onclick="close_hand_in()" style="background-color: #000;"></i></h4>
       <table class="table table-bordered table-condensed" id="chartable">
         <thead>
@@ -1186,6 +1186,96 @@
       </table>
       <h4><button class="pull-right btn-success" onclick=" handInChart(this)">生成表格</button></h4>
   </div>
+        
+      <!-- 右侧表单配置 -->
+  <div class="chartset-content table-responsive" id="chartset" style="display: block;">
+        <div class="sethead">
+          <button class="btn btn-default">取消</button>
+            <h4>表单设置</h4>
+        </div>
+        <div class="setbody">
+          <div class="input-group charttitle">
+            <span class="input-group-addon">表单标题:</span>
+            <input type="text">
+            <select name="" id="">
+                <option value="">主题</option>
+            </select>
+          </div>
+          <div class="input-group span2">
+            <span class="input-group-addon">请选择 值:</span>
+            <select>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+          </div>
+          <div class="input-group span2">
+            <span class="input-group-addon">聚合方式:</span>
+            <select>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+          </div>                    
+          <div class="input-group span2">
+            <span class="input-group-addon">请选择 轴:</span>
+            <select>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+          </div>
+          <div class="input-group span2">
+            <span class="input-group-addon">聚合方式:</span>
+            <select>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+          </div>
+          <div class="input-group span2">
+            <span class="input-group-addon">请选择 系列:</span>
+            <select>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+          </div>
+          <div class="input-group span2">
+            <span class="input-group-addon">聚合方式:</span>
+            <select>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+          </div>  
+          <div class="input-group" style="text-align: center;clear:both;width: 100%;">
+            <button class="btn btn-info">添加系列</button>
+             <button type="button" class="btn btn-success " id="saveChartItem">生成表单</button>
+          </div>                                      
+        </div>
+        <div class="sethead">
+            <h4>添加筛选</h4>
+        </div>
+        <div class="setbody chartselect">
+          <div class="input-group">
+            <span class="input-group-addon">请选择 参与条件:</span>
+            <select>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+            
+          </div>
+          
+          <div class="input-group" style="text-align: center;clear:both;width: 100%;">
+            <button class="btn btn-info">添加筛选条件</button>
+             <button type="button" class="btn btn-success " id="saveChartItem">生成筛选</button>
+          </div>                                      
+        </div>
+  </div>        
+
+
 </div>
 <div class="modal fade logo" id="logo" aria-hidden="true" data-backdrop="static">
       <form class="panel">

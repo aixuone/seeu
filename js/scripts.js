@@ -405,8 +405,60 @@ $(document).ready(function() {
 			startdrag = 0;
 		}		
 	});
-
-	$(".sidebar-nav .lichart").draggable({
+// ixu	
+	// $(".sidebar-nav .lichart").draggable({
+	// 	// connectToSortable: ".demo",
+	// 	containment: ".demo",
+	// 	helper: "clone",
+	// 	handle: ".drag",
+	// 	snap: false,
+	// 	scroll: true,
+	// 	scrollSensitivity:500,
+	// 	scrollSpeed: 100,
+	// 	start: function(e,t) {
+	// 		if (!startdrag) stopsave++;
+	// 		startdrag = 1;
+	// 	},
+	// 	drag: function(e, t) {
+	// 		t.helper.width(400)
+	// 	},
+	// 	stop: function(e, t) {
+	// 		console.log(e);
+	// 		handleJsIds();
+	// 		var clone = $(e.target).clone(false);
+	// 		clone.attr("id","a"+(++dom_id));
+	// 		$(".demo").append(clone.css({'position':'absolute','left':(t.position.left-236)+'px','top':(t.position.top)+'px'}));
+	// 		var lichart=$(".demo .lichart");
+	// 		lichart.addClass('span4');
+	// 		lichart.find("span.drag").css({"top":"-30px",'right':'10px'});
+	// 		lichart.find("a.remove").css({"top":"-30px",'right':'70px'});
+	// 		lichart.find('.editicon').bind('click',function(){
+	// 			var $view = $(this).siblings('.view');
+	// 			$view.find('.demoChart').hide();
+	// 			$view.find('.setChart').show();
+	// 			});			
+	// 		// 根据图表类型选择对应参数设置项
+	// 		switchChart(clone);
+			
+	// 		lichart.draggable({
+	// 			opacity: .35,
+	// 			handle: ".drag",
+	// 			containment: ".demo", 
+	// 			start: function(e,t) {
+	// 				if (!startdrag) stopsave++;
+	// 				startdrag = 1;
+	// 			},
+	// 			stop: function(e,t) {
+	// 				if(stopsave>0) stopsave--;
+	// 				startdrag = 0;
+	// 				console.log(t);
+	// 			}
+	// 		});
+	// 		if(stopsave>0) stopsave--;
+	// 		startdrag = 0;
+	// 	}
+	// });	
+$(".sidebar-nav .lichart").draggable({
 		// connectToSortable: ".demo",
 		containment: ".demo",
 		helper: "clone",
@@ -432,10 +484,12 @@ $(document).ready(function() {
 			lichart.addClass('span4');
 			lichart.find("span.drag").css({"top":"-30px",'right':'10px'});
 			lichart.find("a.remove").css({"top":"-30px",'right':'70px'});
+			$('#chartset').slideDown();
 			lichart.find('.editicon').bind('click',function(){
 				var $view = $(this).siblings('.view');
 				$view.find('.demoChart').hide();
-				$view.find('.setChart').show();
+				// $view.find('.setChart').show();
+				$('#chartset').slideDown();
 				});			
 			// 根据图表类型选择对应参数设置项
 			switchChart(clone);
@@ -457,8 +511,7 @@ $(document).ready(function() {
 			if(stopsave>0) stopsave--;
 			startdrag = 0;
 		}
-	});	
-
+});		
 	initContainer();
 	$('body.edit .demo').on("click","[data-target=#editorModal]",function(e) {
 		e.preventDefault();
