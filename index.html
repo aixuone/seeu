@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bootstrap-select/bootstrap-select.min.css">
   <link rel="stylesheet" href="css/ixu.css">
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
     <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
@@ -94,7 +95,7 @@
                 <!-- <select name="" id="DBSselect" class="span12"> -->
                 <option value="">请等待加载</option>
               </select>
-              <div id="XINFO" class="hide"></div> 
+              <!-- <div id="XINFO" class="hide"></div>  -->
             </div>
           </li>
         </ul>  
@@ -398,6 +399,7 @@
         <div class="input-group charttitle">
           <span class="input-group-addon">基本条件:</span>
           <select name="" class="basework">
+            <option value="all">无</option>
             <option value="normal">时间点</option>
             <option value="komatsu">时间段</option>
             <option value="light">品牌</option>
@@ -414,9 +416,11 @@
         <div class="input-group span2">
           <span class="input-group-addon">聚合方式:</span>
           <select class="chartValueOpt">
-            <option value="1">选项</option>
-            <option value="1">选项</option>
-            <option value="1">选项</option>
+            <option value="">聚合方式</option>
+            <option value="GROUP">分组</option>
+            <option value="SUM">求和</option>
+            <option value="AVG">平均数</option>
+            <option value=" COUNT">计数</option>
           </select>
         </div>                    
         <div class="input-group span2">
@@ -430,9 +434,11 @@
         <div class="input-group span2">
           <span class="input-group-addon">聚合方式:</span>
           <select class="chartXOpt">
-            <option value="1">选项</option>
-            <option value="1">选项</option>
-            <option value="1">选项</option>
+            <option value="">聚合方式</option>
+            <option value="GROUP">分组</option>
+            <option value="SUM">求和</option>
+            <option value="AVG">平均数</option>
+            <option value=" COUNT">计数</option>
           </select>
         </div>
         <div id='serieslist'>
@@ -447,9 +453,11 @@
           <div class="input-group span2">
             <span class="input-group-addon">聚合方式:</span>
             <select class="chartSeriesOpt">
-              <option value="1">选项</option>
-              <option value="1">选项</option>
-              <option value="1">选项</option>
+              <option value="">聚合方式</option>
+              <option value="GROUP">分组</option>
+              <option value="SUM">求和</option>
+              <option value="AVG">平均数</option>
+              <option value=" COUNT">计数</option>
             </select>
           </div>  
         </div>
@@ -465,7 +473,7 @@
         <div id="filterlist">
           <div class="input-group">
             <span class="input-group-addon">请选择 筛选条件:</span>
-            <select>
+            <select class="chartfilter">
               <option value="1">选项</option>
               <option value="1">选项</option>
               <option value="1">选项</option>
@@ -491,16 +499,18 @@
       <div class="input-group span2">
         <span class="input-group-addon">聚合方式:</span>
         <select class="chartSeriesOpt">
-          <option value="1">选项</option>
-          <option value="1">选项</option>
-          <option value="1">选项</option>
+          <option value="">聚合方式</option>
+          <option value="GROUP">分组</option>
+          <option value="SUM">求和</option>
+          <option value="AVG">平均数</option>
+          <option value=" COUNT">计数</option>
         </select>
       </div>  
   </script>
   <script type="text/html" id="eg_filter"> 
       <div class="input-group">
         <span class="input-group-addon">请选择 筛选条件:</span>
-        <select>
+        <select class="chartfilter">
           <option value="1">选项</option>
           <option value="1">选项</option>
           <option value="1">选项</option>

@@ -485,14 +485,25 @@ $(".sidebar-nav .lichart").draggable({
 			lichart.find("span.drag").css({"top":"-30px",'right':'10px'});
 			lichart.find("a.remove").css({"top":"-30px",'right':'70px'});
 			showSetChartWin('add');
-			
+			var $view = lichart.find('.setChart');
+			$view.each(function(index, el) {
+				var that = $(this);
+				that.css('border','1px #ccc solid').resizable();
+				that.bind('resize',function(){
+
+					var _w =that.width();
+					var _h =that.height();
+					lichart.width(_w);
+					lichart.height(_h);
+				})						
+			}); 
 			lichart.find('.editicon').bind('click',function(){
-				var $view = $(this).siblings('.view');
-				$view.find('.demoChart').hide();
+				
+				// $view.find('.demoChart').hide();
 
 				showSetChartWin('edit')
-				
-				});			
+			
+			});			
 			// 根据图表类型选择对应参数设置项
 			switchChart(clone);
 			
