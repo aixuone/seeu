@@ -67,18 +67,19 @@ DataObj.prototype = {
 };
 
 // 伪登录
-$(".main-content").show();
-// // 打开登录框
-// $("#logo").modal('show');
-// // 登录按钮绑定事件  隐藏登录框
-// $(function(){	
-// 	$("#logo_btn").click(function(event) {
-// 		event.preventDefault();
-// 		/* Act on the event */
-// 		$("#logo").modal('hide');
-// 		$(".main-content").show();
+// $(".main-content").show();
+// 打开登录框
+$("#logo").modal('show');
+// 登录按钮绑定事件  隐藏登录框
+$(function(){	
+	$("#logo_btn").click(function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$("#logo").modal('hide');
+		$(".main-content").show();
 
-// });
+	})
+});
 
 //登录成功 获取系统DBS列表
 $.ajax({

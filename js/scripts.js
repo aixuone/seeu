@@ -484,12 +484,14 @@ $(".sidebar-nav .lichart").draggable({
 			lichart.addClass('span4');
 			lichart.find("span.drag").css({"top":"-30px",'right':'10px'});
 			lichart.find("a.remove").css({"top":"-30px",'right':'70px'});
-			$('#chartset').slideDown();
+			showSetChartWin('add');
+			
 			lichart.find('.editicon').bind('click',function(){
 				var $view = $(this).siblings('.view');
 				$view.find('.demoChart').hide();
-				// $view.find('.setChart').show();
-				$('#chartset').slideDown();
+
+				showSetChartWin('edit')
+				
 				});			
 			// 根据图表类型选择对应参数设置项
 			switchChart(clone);
