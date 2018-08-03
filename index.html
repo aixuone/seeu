@@ -404,25 +404,34 @@
             <option value="komatsu">时间段</option>
             <option value="light">品牌</option>
           </select>  
-        </div>    -->            
-        <div class="input-group span2">
-          <span class="input-group-addon">请选择 值:</span>
-          <select class="chartValue">
-            <option value="1">选项</option>
-            <option value="1">选项</option>
-            <option value="1">选项</option>
-          </select>
-        </div>
-        <div class="input-group span2">
-          <span class="input-group-addon">聚合方式:</span>
-          <select class="chartValueOpt">
-            <option value="">聚合方式</option>
-            <option value="GROUP">分组</option>
-            <option value="SUM">求和</option>
-            <option value="AVG">平均数</option>
-            <option value=" COUNT">计数</option>
-          </select>
-        </div>                    
+        </div>    -->    
+        <div class="clearfix">        
+          <div class="input-group span2">
+            <span class="input-group-addon">请选择 值:</span>
+            <select class="chartValue">
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+              <option value="1">选项</option>
+            </select>
+          </div>       
+          <div class="input-group span2">
+            <span class="input-group-addon">聚合方式:</span>
+            <select class="chartValueOpt">
+              <option value="">聚合方式</option>
+              <option value="GROUP">分组</option>
+              <option value="SUM">求和</option>
+              <option value="AVG">平均数</option>
+              <option value=" COUNT">计数</option>
+            </select>
+          </div>  
+          <div class="input-group span2">
+            <span class="input-group-addon">值 表示类型:</span>
+            <select class="typeValue">
+              <option value="bar">柱形图</option>
+              <option value="line">曲线图</option>
+            </select>
+          </div>         
+        </div>                 
         <div class="input-group span2">
           <span class="input-group-addon">请选择 轴:</span>
           <select class="chartX">
@@ -465,7 +474,6 @@
         </div>
         <div class="input-group" style="text-align: center;clear:both;width: 100%;">
           <button class="btn btn-info" id="seriesAdd">添加系列</button>
-           <button type="button" class="btn btn-success " id="saveChartItem">生成表单</button>
         </div>                                      
       </div>
       <div class="sethead">
@@ -485,7 +493,10 @@
         
         <div class="input-group" style="text-align: center;clear:both;width: 100%;margin-bottom: 20px;">
           <button class="btn btn-info" id="filterAdd">添加筛选条件</button>
-           <button type="button" class="btn btn-success " id="saveChartItem">生成筛选</button>
+          <!--  <button type="button" class="btn btn-success " id="saveChartItem">生成筛选</button> -->
+        </div>   
+        <div  class="input-group" style="text-align: center;margin-bottom: 20px;">
+          <button type="button" class="btn btn-success " id="saveChartItem" >生成表单</button>
         </div>                                      
       </div>
   </script>  

@@ -129,36 +129,36 @@ $(function(){
 	}
 	//绑定 添加系列 添加筛选条件 操作
 	var caozuo = function(){
-		//添加 系列
+		//添加 系列 绑定事件
 		$('#seriesAdd').on('click',function(){
 			var serires = document.getElementById('eg_series').innerHTML;
 			$('#serieslist').append(serires);
 			var e = $('#serieslist').find(".chartSeries").last();
 			INFOLIST(e);
 		});	
-		//添加 筛选条件
+		//添加 筛选条件 绑定事件
 		$('#filterAdd').on('click',function(){
 			var serires = document.getElementById('eg_filter').innerHTML;
 			$('#filterlist').append(serires);
 			var e =$('#filterlist').find(".chartfilter").last();
 			INFOLIST(e);
 		});	
-		//生成表单按钮
+		//生成表单按钮 绑定事件
 		$('#setChart').on('click', function(event) {
 			event.preventDefault();
 			/* Act on the event */
 			setChart();
 		});	
 	}
-	//生成表单
-var _id = 1;
+	
+	//点击 生成表单 按钮
 	var setChart = function(){
 		var $id = write_id;
 
 		//整理 值 字段
 		var value = [{
 			columnID: $('.chartValue').val(),
-			columnDispType: 'bar',
+			columnDispType: $('.typeValue').val(),
 			columnPolymer:$('.chartValueOpt').val()
 		}]
 		 
@@ -218,6 +218,37 @@ var _id = 1;
 			}
 		});
 	}
+	//修改表单 填写设置表单
+	var editChartOpt = function(id){
+		write_id = id;
+		for(i in CHART){
+			if (CHART[i].write_id == write_id){
+				var o = CHART[i];
+				$("#chartTitle").val(o.title);
+			 	$('#chartTheme').val(o.theme);
+			 	$('#DBSselect option').each(function(index, el) {
+			 		if (o.dataSetID ==$(this).val()){
+			 			$(this).attr('selected',true);
+			 		}
+			 	});
+			 	$('.chartValue').val(o.value[0].columnID);
+			 	$('.chartValueOpt').val(o.value[0].columnPolymer);
+				$('.chartX').val(o.x[0].columnID)
+				$('.chartXOpt').val(o.x[0].columnPolymer)
+				for (var i in series) {
+					if (i>0) {
+						$('#seriesAdd').click();
+					}
+					$('#serieslist>div').last().find('.chartSeries').val(o.series[i].columnID);
+					$('#serieslist>div').last().find('.chartSeriesOpt').val(o.series[i].columnPolymer);
+				}
+
+				return;
+			}
+		}
+		console.log('本地查无此表单的保存数据');
+	}
+
 	// 判断本地是否存储了 该表单设置
 	var isSave = function($id){
 		for(i in CHART){
